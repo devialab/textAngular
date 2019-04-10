@@ -225,13 +225,15 @@ textAngular.directive("textAngular", [
                     //console.log(spaceAboveImage, spaceBelowImage);
 
                     /* istanbul ignore if: catches only if near bottom of editor */
+                    var topValue;
                     if(spaceAboveImage < 51) {
-                        scope.displayElements.popover.css('top', _el[0].offsetTop + _el[0].offsetHeight + scope.displayElements.scrollWindow[0].scrollTop + 'px');
+                        topValue = _el[0].offsetTop + _el[0].offsetHeight;
                         scope.displayElements.popover.removeClass('top').addClass('bottom');
                     } else {
-                        scope.displayElements.popover.css('top', _el[0].offsetTop - 54 + scope.displayElements.scrollWindow[0].scrollTop + 'px');
+                        topValue = _el[0].offsetTop - 51;
                         scope.displayElements.popover.removeClass('bottom').addClass('top');
                     }
+                    scope.displayElements.popover.css('top', topValue+'px');
                     var _maxLeft = scope.displayElements.text[0].offsetWidth - scope.displayElements.popover[0].offsetWidth;
                     var _targetLeft = _el[0].offsetLeft + (_el[0].offsetWidth / 2.0) - (scope.displayElements.popover[0].offsetWidth / 2.0);
                     var _rleft = Math.max(0, Math.min(_maxLeft, _targetLeft));
